@@ -1,0 +1,42 @@
+// LOCALHOST
+###
+GET http://localhost:8080/airbnb
+
+### 
+Create contact POST http://localhost:8080/ HTTP/1.1 content-type: application/json
+
+{"listing_url":"https://www.airbnb.com/rooms/10082422",
+"name":"Nice room in Barcelona Center",
+"description":"Hi! Cozy double bedroom in amazing flat next to Passeig de Sant Joan and to metro stop Verdaguer. 3 streets to Sagrada Familia and 4 streets to Passeig de Gracia. Flat located in the center of the city.  View to Sagrada Familia and Torre Agbar. Nice flat in the central neighborhood of Eixample. Ideal couple or 2 friends. Dreta de l'Eixample",
+"transit":"",
+"interaction":"",
+"house_rules":"",
+"property_type":"Apartment",
+"room_type":"Private room",
+"bed_type":"RealBed",
+"minimum_nights":"1",
+"maximum_nights":"9",
+"cancellation_policy":"flexible",
+"amenities":["Internet","Wifi","Kitchen","Elevator","Heating","Washer","Shampoo","Hair dryer","Iron","Laptop friendly workspace"],
+"price":{"$numberDecimal":"50.00"},
+"weekly_price": {"$numberDecimal": ""},
+"monthly_price": {"$numberDecimal": ""},
+"cleaning_fee":{"$numberDecimal":"10.00"},
+"extra_people":{"$numberDecimal":"0.00"},
+"guests_included":{"$numberDecimal":"1"},
+"images":{"thumbnail_url":"","medium_url":"","picture_url":"https://a0.muscache.com/im/pictures/aed1923a-69a6-4614-99d0-fd5c8f41ebda.jpg?aki_policy=large"}}
+
+### Update contact PUT http://localhost:8080/
+
+### DELETE contact DELETE http://localhost:8080/airbnb HTTP/1.1
+
+
+---------------------USER------------------------------
+{
+  "email": "huang2019@byui.edu",
+  "password": "jagF749!*$oq",
+  "birthday": "8/17/1998",
+  "favoriteColor": "Pink",
+  "displayName": "Chloe Huang",
+  "username": "Chloe555"
+}
