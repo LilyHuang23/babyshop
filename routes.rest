@@ -1,6 +1,6 @@
 // LOCALHOST
 ###
-GET http://localhost:8080/airbnb
+GET http://localhost:8080/babyshop
 
 ### 
 Create contact POST http://localhost:8080/ HTTP/1.1 content-type: application/json

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const airbnbController = require('../controllers/airbnb');
+const airbnbController = require('../controllers/product');
 
 router.get('/', airbnbController.getAll);
 router.get('/:id', airbnbController.getSingle);

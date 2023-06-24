@@ -5,7 +5,7 @@ const { auth, requiresAuth } = require('express-openid-connect');
 
 
 router.use('/', requiresAuth(), require('./swagger'));
-router.use('/airbnb',  requiresAuth(), require('./airbnb'));
+router.use('/product',  requiresAuth(), require('./product'));
 router.use('/user', requiresAuth(), require('./user'));
 
 module.exports = router;
