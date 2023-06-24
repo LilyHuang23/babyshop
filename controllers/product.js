@@ -4,7 +4,7 @@ const ObjectId = require('mongodb').ObjectId;
 const getAll = async (req, res) => {
   try {
     
-    const result = await mongodb.getDb().db('airbnb_info').collection('airbnb').find();
+    const result = await mongodb.getDb().db('babyshop').collection('airbnb').find();
 
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
@@ -19,7 +19,7 @@ const getAll = async (req, res) => {
 const getSingle = async (req, res) => {
  
   const infoId = new ObjectId(req.params.id);
-  const result = await mongodb.getDb().db('airbnb_info').collection('airbnb').find({ _id: infoId });
+  const result = await mongodb.getDb().db('babyshop').collection('airbnb').find({ _id: infoId });
    try {
     if (!infoId || !result) {
       res.status(400).send({ message: 'Content can not be empty!' });
