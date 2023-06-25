@@ -5,7 +5,7 @@
     "description": "Babyshop API",
     "version": "1.0.0"
   },
-  "host": "https://bobyshop2.onrender.com",
+  "host": "bobyshop2.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
