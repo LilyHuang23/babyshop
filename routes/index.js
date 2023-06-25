@@ -4,8 +4,8 @@ const { auth, requiresAuth } = require('express-openid-connect');
 
 
 
-router.use('/', requiresAuth(), require('./swagger'));
-router.use('/product',  requiresAuth(), require('./product'));
-router.use('/user', requiresAuth(), require('./user'));
+router.use('/', require('./swagger'));
+router.use('/product', require('./product'));
+router.use('/user', require('./user'));
 
 module.exports = router;
