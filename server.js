@@ -10,7 +10,7 @@ const config = {
   authRequired: false,
   auth0Logout: true,
   secret: 'a long, randomly-generated string stored in env',
-  baseURL: 'http://localhost:8080',
+  baseURL: 'https://bobyshop2.onrender.com',
   clientID: '9XAJTlsEWnCgyL8fWPob6vOF1sVgqI0S',
   issuerBaseURL: 'https://dev-o2t20jrazweh1dgo.us.auth0.com'
 };

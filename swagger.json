@@ -14,17 +14,19 @@
     "/api-docs": {
       "get": {
         "description": "",
-        "parameters": [],
-        "responses": {}
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       }
     },
-    "/airbnb/": {
+    "/product/": {
       "get": {
         "description": "",
         "produces": [
           "application/json"
         ],
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -120,7 +122,7 @@
         }
       }
     },
-    "/airbnb/{id}": {
+    "/product/{id}": {
       "get": {
         "description": "",
         "produces": [
@@ -263,7 +265,9 @@
     "/user/": {
       "get": {
         "description": "",
-        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -285,7 +289,19 @@
                 "username": {
                   "example": "any"
                 },
+                "displayName": {
+                  "example": "any"
+                },
+                "favoriteColor": {
+                  "example": "any"
+                },
+                "birthday": {
+                  "example": "any"
+                },
                 "password": {
+                  "example": "any"
+                },
+                "email": {
                   "example": "any"
                 }
               }
@@ -305,12 +321,15 @@
         }
       }
     },
-    "/user/{username}": {
+    "/user/{id}": {
       "get": {
         "description": "",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
-            "name": "username",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -319,6 +338,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "500": {
             "description": "Internal Server Error"
@@ -329,7 +351,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "username",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -340,16 +362,22 @@
             "schema": {
               "type": "object",
               "properties": {
-                "password": {
+                "username": {
                   "example": "any"
                 },
                 "displayName": {
                   "example": "any"
                 },
-                "info": {
+                "favoriteColor": {
                   "example": "any"
                 },
-                "profile": {
+                "birthday": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                },
+                "email": {
                   "example": "any"
                 }
               }
@@ -372,15 +400,15 @@
         "description": "",
         "parameters": [
           {
-            "name": "username",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
+          "200": {
+            "description": "OK"
           },
           "400": {
             "description": "Bad Request"
