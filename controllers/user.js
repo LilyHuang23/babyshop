@@ -19,7 +19,7 @@ const getAllUsers = async (req, res) => {
 const getSingleUser = async (req, res) => {
  
   const infoId = new ObjectId(req.params.id);
-  const result = await mongodb.getDb().db('airbnb_info').collection('user').find({ _id: infoId });
+  const result = await mongodb.getDb().db('babyshop').collection('user').find({ _id: infoId });
    try {
     if (!infoId || !result) {
       res.status(400).send({ message: 'Content can not be empty!' });
@@ -53,7 +53,7 @@ const createUserInfo = async (req, res) => {
     password:req.body.password,
     email:req.body.email,
   };
-  const response = await mongodb.getDb().db('airbnb_info').collection('user').insertOne(info);
+  const response = await mongodb.getDb().db('babyshop').collection('user').insertOne(info);
  
     if (response.acknowledged) {
       res.status(201).json(response);
@@ -85,7 +85,7 @@ const updateUserInfo = async (req, res) => {
     password:req.body.password,
     email:req.body.email,
   };
-  const response = await mongodb.getDb().db('airbnb_info').collection('user').replaceOne({ _id: infoId }, info);
+  const response = await mongodb.getDb().db('babyshop').collection('user').replaceOne({ _id: infoId }, info);
  
     if (response.modifiedCount > 0) {
       res.status(204).send();
@@ -98,7 +98,7 @@ const updateUserInfo = async (req, res) => {
 const deleteUserInfo = async (req, res) => {
   try {
   const infoId = new ObjectId(req.params.id);
-  let response = await mongodb.getDb().db('airbnb_info').collection('user').deleteOne({_id: infoId });
+  let response = await mongodb.getDb().db('babyshop').collection('user').deleteOne({_id: infoId });
   console.log(response);
     if (response.acknowledged = true) {
       res.status(200).send();
