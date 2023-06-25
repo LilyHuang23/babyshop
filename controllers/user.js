@@ -5,7 +5,7 @@ const passwordUtil = require('../util/passwordComplexityCheck');
 const getAllUsers = async (req, res) => {
   try {
     
-    const result = await mongodb.getDb().db('airbnb_info').collection('user').find();
+    const result = await mongodb.getDb().db('babyshop').collection('user').find();
     console.log(result)
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
