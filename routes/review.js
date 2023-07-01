@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const userController = require('../controllers/user');
+const reviewController = require('../controllers/review');
 
-router.get('/', userController.getAllUsers);
-router.get('/:id', userController.getSingleUser);
-router.post('/', userController.createUserInfo);
-router.put('/:id', userController.updateUserInfo);
-router.delete('/:id', userController.deleteUserInfo);
+router.get('/', reviewController.getAllReviews);
+router.get('/:id', reviewController.getSingleReview);
+router.post('/', reviewController.createReviewInfo);
+router.put('/:id', reviewController.updateReviewInfo);
+router.delete('/:id', reviewController.deleteReviewInfo);
 
 module.exports = router;

@@ -1,10 +1,10 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
-const getAll = async (req, res) => {
+const getAllReviews = async (req, res) => {
   try {
     
-    const result = await mongodb.getDb().db('babyshop').collection('product').find();
+    const result = await mongodb.getDb().db('babyshop').collection('review').find();
 
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
@@ -16,10 +16,10 @@ const getAll = async (req, res) => {
     }
 };
 
-const getSingle = async (req, res) => {
+const getSingleReview = async (req, res) => {
  
   const infoId = new ObjectId(req.params.id);
-  const result = await mongodb.getDb().db('babyshop').collection('product').find({ _id: infoId });
+  const result = await mongodb.getDb().db('babyshop').collection('review').find({ _id: infoId });
    try {
     if (!infoId || !result) {
       res.status(400).send({ message: 'Content can not be empty!' });
@@ -35,22 +35,23 @@ const getSingle = async (req, res) => {
 }
 };
 
-const createInfo = async (req, res) => {
+const createReviewInfo = async (req, res) => {
   try {
     if (
-      !req.body.name || !req.body.description || 
-      !req.body.price ||
-      !req.body.images) {
+    !req.body.userName ||
+    !req.body.productName ||
+    !req.body.review || 
+    !req.body.rate) {
       res.status(400).send({ message: 'Content can not be empty!' });
       return
     }
   const info = {
-    name:req.body.name,
-    description:req.body.description,
-    price:req.body.price,
-    images:req.body.images
+    userName:req.body.userName,
+    productName:req.body.productName,
+    review:req.body.review || null,
+    rate:req.body.rate
   };
-  const response = await mongodb.getDb().db('babyshop').collection('product').insertOne(info);
+  const response = await mongodb.getDb().db('babyshop').collection('review').insertOne(info);
  
     if (response.acknowledged) {
       res.status(201).json(response);
@@ -64,27 +65,28 @@ const createInfo = async (req, res) => {
   }
 };
 
-const updateInfo = async (req, res) => {
+const updateReviewInfo = async (req, res) => {
   const infoId = new ObjectId(req.params.id);
   // be aware of updateOne if you only want to update specific fields
   try {
     if (
-      !req.body.name || !req.body.description || 
-      !req.body.price ||
-      !req.body.images) {
+        !req.body.userName ||
+        !req.body.productName ||
+        !req.body.review || 
+        !req.body.rate) {
       res.status(400).send({ message: 'Content can not be empty!' });
       return
     }
   const info = {
-    name:req.body.name,
-    description:req.body.description,
-    price:req.body.price,
-    images:req.body.images
+    userName:req.body.userName,
+    productName:req.body.productName,
+    review:req.body.review || null,
+    rate:req.body.rate
   };
   const response = await mongodb
     .getDb()
     .db('babyshop')
-    .collection('product')
+    .collection('review')
     .replaceOne({ _id: infoId }, info);
   // console.log(response);
     if (response.modifiedCount > 0) {
@@ -96,10 +98,10 @@ const updateInfo = async (req, res) => {
   }
 };
 
-const deleteInfo = async (req, res) => {
+const deleteReviewInfo = async (req, res) => {
   try {
   const infoId = new ObjectId(req.params.id);
-  let response = await mongodb.getDb().db('babyshop').collection('product').deleteOne({_id: infoId });
+  let response = await mongodb.getDb().db('babyshop').collection('review').deleteOne({_id: infoId });
   console.log(response);
     if (response.acknowledged = true) {
       res.status(200).send();
@@ -114,9 +116,9 @@ const deleteInfo = async (req, res) => {
 };
 
 module.exports = {
-  getAll,
-  getSingle,
-  createInfo,
-  updateInfo,
-  deleteInfo
+    getAllReviews,
+    getSingleReview,
+    createReviewInfo,
+    updateReviewInfo,
+    deleteReviewInfo,
 };

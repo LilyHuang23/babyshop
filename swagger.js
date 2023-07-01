@@ -5,8 +5,8 @@ const doc = {
     title: 'My API',
     description: 'Babyshop API',
   },
-  host: 'bobyshop2.onrender.com',
-  schemes: ['https'],
+  host: 'localhost:8080',
+  schemes: ['http'],
   // host: 'airbnb-x1zu.onrender.com',
   // schemes: ['https'],
 };

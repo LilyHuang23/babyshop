@@ -1,12 +1,11 @@
-const db = require('../db/connect');
-const User = db.user;
-const passwordUtil = require('../util/passwordComplexityCheck');
+const mongodb = require('../db/connect');
+const ObjectId = require('mongodb').ObjectId;
 
 const getAllUsers = async (req, res) => {
   try {
     
     const result = await mongodb.getDb().db('babyshop').collection('user').find();
-    console.log(result)
+
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
       res.status(200).json(lists);
@@ -16,6 +15,7 @@ const getAllUsers = async (req, res) => {
       res.status(500).json("Can't find the data");
     }
 };
+
 const getSingleUser = async (req, res) => {
  
   const infoId = new ObjectId(req.params.id);
@@ -28,37 +28,39 @@ const getSingleUser = async (req, res) => {
  
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists[0]);
+    res.status(200).json(lists);
   });
 } catch (err) {
   res.status(500).json(err);
 }
 };
+
 const createUserInfo = async (req, res) => {
   try {
     if (
-      !req.body.username || !req.body.displayName || 
+      !req.body.userName || !req.body.displayName || 
       !req.body.favoriteColor ||
       !req.body.birthday ||
       !req.body.password ||
-      !req.body.email) {
+      !req.body.email ) {
       res.status(400).send({ message: 'Content can not be empty!' });
       return
     }
   const info = {
-    username:req.body.username,
+    userName:req.body.userName,
     displayName:req.body.displayName,
-    favoriteColor:req.body.favoriteColor,
+    favoriteColor:req.body.favoriteColor || null,
     birthday:req.body.birthday,
     password:req.body.password,
     email:req.body.email,
+
   };
   const response = await mongodb.getDb().db('babyshop').collection('user').insertOne(info);
  
     if (response.acknowledged) {
       res.status(201).json(response);
     } else {
-      res.status(500).json(response.error || 'Some error occurred while creating the User info.');
+      res.status(500).json(response.error || 'Some error occurred while creating the Info.');
     }
     
   }
@@ -66,27 +68,34 @@ const createUserInfo = async (req, res) => {
     res.status(500).json(err);
   }
 };
+
 const updateUserInfo = async (req, res) => {
+  const infoId = new ObjectId(req.params.id);
+  // be aware of updateOne if you only want to update specific fields
   try {
     if (
-      !req.body.username || !req.body.displayName || 
+      !req.body.userName || !req.body.displayName || 
       !req.body.favoriteColor ||
       !req.body.birthday ||
       !req.body.password ||
-      !req.body.email) {
+      !req.body.email ) {
       res.status(400).send({ message: 'Content can not be empty!' });
       return
     }
   const info = {
-    username:req.body.username,
+    userName:req.body.userName,
     displayName:req.body.displayName,
-    favoriteColor:req.body.favoriteColor,
+    favoriteColor:req.body.favoriteColor || null,
     birthday:req.body.birthday,
     password:req.body.password,
     email:req.body.email,
   };
-  const response = await mongodb.getDb().db('babyshop').collection('user').replaceOne({ _id: infoId }, info);
- 
+  const response = await mongodb
+    .getDb()
+    .db('babyshop')
+    .collection('user')
+    .replaceOne({ _id: infoId }, info);
+  // console.log(response);
     if (response.modifiedCount > 0) {
       res.status(204).send();
     } 
@@ -95,6 +104,7 @@ const updateUserInfo = async (req, res) => {
     res.status(500).json(err);
   }
 };
+
 const deleteUserInfo = async (req, res) => {
   try {
   const infoId = new ObjectId(req.params.id);
@@ -111,6 +121,8 @@ const deleteUserInfo = async (req, res) => {
     res.status(500).json(err);
   }
 };
+
+
 
 module.exports = {
   getAllUsers,
