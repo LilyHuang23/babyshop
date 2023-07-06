@@ -69,7 +69,7 @@ describe('Good Home Routes', function () {
 
       orderItem : 'hair tie',
 
-      productDetail : 'cheap crap',
+      productDetail : 'tie for the hair',
 
       dateAdded : '10/10/23'
 
