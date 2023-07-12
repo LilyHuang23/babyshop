@@ -5,10 +5,10 @@
     "description": "Babyshop API",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "bobyshop2.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/api-docs": {
@@ -51,7 +51,16 @@
                 "description": {
                   "example": "any"
                 },
+                "gender": {
+                  "example": "any"
+                },
                 "price": {
+                  "example": "any"
+                },
+                "size": {
+                  "example": "any"
+                },
+                "season": {
                   "example": "any"
                 },
                 "images": {
@@ -121,7 +130,16 @@
                 "description": {
                   "example": "any"
                 },
+                "gender": {
+                  "example": "any"
+                },
                 "price": {
+                  "example": "any"
+                },
+                "size": {
+                  "example": "any"
+                },
+                "season": {
                   "example": "any"
                 },
                 "images": {

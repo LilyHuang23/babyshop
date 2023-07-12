@@ -38,17 +38,20 @@ const getSingle = async (req, res) => {
 const createInfo = async (req, res) => {
   try {
     if (
-      !req.body.name || !req.body.description || 
-      !req.body.price ||
+      !req.body.name || !req.body.description || !req.body.gender||
+      !req.body.price || !req.body.size || !req.body.season ||
       !req.body.images) {
       res.status(400).send({ message: 'Content can not be empty!' });
       return
     }
   const info = {
     name:req.body.name,
-    description:req.body.description,
-    price:req.body.price,
-    images:req.body.images
+    description: req.body.description,
+    gender: req.body.gender,
+    size: req.body.size,
+    price: req.body.price,
+    season: req.body.season,
+    images: req.body.images
   };
   const response = await mongodb.getDb().db('babyshop').collection('product').insertOne(info);
  
@@ -69,16 +72,19 @@ const updateInfo = async (req, res) => {
   // be aware of updateOne if you only want to update specific fields
   try {
     if (
-      !req.body.name || !req.body.description || 
-      !req.body.price ||
+      !req.body.name || !req.body.description || !req.body.gender ||
+      !req.body.price || !req.body.size || !req.body.season ||
       !req.body.images) {
       res.status(400).send({ message: 'Content can not be empty!' });
       return
     }
   const info = {
     name:req.body.name,
-    description:req.body.description,
-    price:req.body.price,
+    description: req.body.description,
+    gender:req.body.gender,
+    price: req.body.price,
+    size: req.body.size,
+    season: req.body.season,
     images:req.body.images
   };
   const response = await mongodb
