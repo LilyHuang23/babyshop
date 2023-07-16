@@ -6,15 +6,19 @@ const port = process.env.PORT || 8080;
 const app = express();
 const { auth } = require('express-openid-connect');
 
-const config = {
-  authRequired: false,
-  auth0Logout: true,
-  secret: 'a long, randomly-generated string stored in env',
-  baseURL: 'https://bobyshop2.onrender.com',
-  clientID: '9XAJTlsEWnCgyL8fWPob6vOF1sVgqI0S',
-  issuerBaseURL: 'https://dev-o2t20jrazweh1dgo.us.auth0.com'
-};
+const config = { 
 
+  authRequired: false, auth0Logout: true,
+  
+   secret: 'a long, randomly-generated string stored in env', 
+  
+  baseURL: 'https://bobyshop2.onrender.com', 
+  
+  clientID: 'O9bZKKGummYzLq8otKJHe1swwYSRcNj3', 
+  
+  issuerBaseURL: 'https://dev-rpb3yv2pay34uyin.us.auth0.com'
+  
+   }; 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
 app.use(auth(config));
 
